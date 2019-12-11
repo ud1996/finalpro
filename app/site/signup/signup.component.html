@@ -1,0 +1,124 @@
+<div class="container mt-5 mb-5">
+    <div class="card">
+        <div class="card-body">
+            <h3>Signup</h3>
+            <div class="alert alert-success" *ngIf="!userNameExists && fromSubmitted">Successfully Signedup</div>
+            <div>
+                <a href="#" class="btn btn-danger" routerLink="/login"
+                    *ngIf="formSubmitted && !userAlreadyExists">Login</a>
+            </div>
+
+            <form [formGroup]="signupForm" (submit)="onSignup()">
+                <div class="row">
+                    <div class="row container-fluid">
+                        <div class="form group col-xs-6 col-lg-3 mt-3">
+                            <label for="genre">You are </label>
+                            <select class="form-control" (selected)="genre" formControlName="genre"
+                                (click)="checkValue()">
+                                <option id="User" value="User">User</option>
+                                <option id="Admin" value="Admin">Admin</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-4 col-4 mr-1">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" formControlName="email"
+                            placeholder="Enter Email">
+                        <span class="validation-error"
+                            *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').touched">Email
+                            Already Exists
+                        </span>
+
+
+                    </div>
+                    <div class="row container-fluid">
+                        <div class="form-group mt-2 col-6 ">
+                            <label for="firstname">First Name</label>
+                            <input type="text" class="form-control" id="firstname" formControlName="firstName"
+                                placeholder="Enter FirstName">
+                            <span class="validation-error"
+                                *ngIf="signupForm.get('firstName').hasError('required') && signupForm.get('firstName').touched">Firstname
+                            </span>
+                        </div>
+
+                        <div class="form-group mt-2 col-6">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" formControlName="lastName"
+                                placeholder="Enter FirstName">
+                            <span class="validation-error"
+                                *ngIf="signupForm.get('lastName').hasError('required') && signupForm.get('lastName').touched">LastName
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 col-6">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" formControlName="password"
+                            placeholder="Enter Password">
+                        <span class="validation-error"
+                            *ngIf="(signupForm.get('password').hasError('required') && signupForm.get('password').touched)">Password
+                            required</span>
+                    </div>
+                    <div class="row container-fluid ">
+                        <div class="form-group mt-3 col-4">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control" id="age" formControlName="age"
+                                placeholder="Enter Age">
+                            <span class="validation-error"
+                                *ngIf="(signupForm.get('age').hasError('required') && signupForm.get('age').touched)">Age
+                                required</span>
+                            <span class="validation-error"
+                                *ngIf="(signupForm.get('age').hasError('min') && signupForm.get('age').touched)">Age
+                                min 18</span>
+                        </div>
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 mt-3">
+                             <label for="gender">Gender</label>
+                                  <div>
+                                    <label for="male"><input type="radio" formControlName="gender" id="male"
+                                        name="gender"
+                                                                                    value="male">Male</label>
+                                    <label for="female"><input type="radio" formControlName="gender" name="gender"
+                                                                                  id="female"
+                                          value="female">Female</label>
+                                    </div>
+                               </div>
+
+
+                    </div>
+                    <div class="row col-12" *ngIf="asAdmin">
+                        <div class="form-group mt-3 col-4">
+                            <label for="vendorId">VendorId</label>
+                            <input type="number" class="form-control" id="vendorId" formControlName="vendorId"
+                                placeholder="Enter VendorId">
+                            <span class="validation-error"
+                                *ngIf="(signupForm.get('vendorId').hasError('required') && signupForm.get('vendorId').touched)">VendorId
+                                required</span>
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group mt-3 col-4">
+                            <label for="contactNumber">Contact Number</label>
+                            <input type="number" class="form-control" id="contactNumber" formControlName="contactNumber"
+                                placeholder="Enter contactNumber">
+                            <span class="validation-error"
+                                *ngIf="(signupForm.get('contactNumber').hasError('required') && signupForm.get('contactNumber').touched)">contactNumber
+                                required</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group mt-3 ml-2 col-12 text-center">
+                            <input type="submit" class="btn btn-primary background text-white form-control"
+                                [disabled]="signUpForm.invalid" name="signup" value="SignUp">
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
